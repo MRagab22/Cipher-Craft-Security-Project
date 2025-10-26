@@ -1,129 +1,132 @@
 # CipherCraft Website
 
-**CipherCraft Dashboard** is a web-based application designed to perform **encryption and decryption** using various classical cryptographic algorithms.
-It provides an educational and interactive platform to understand and apply cipher techniques with a clean user interface and powerful backend.
+## Overview
+
+CipherCraft Website is a web-based application designed to perform encryption and decryption using classical cryptographic algorithms. It provides an intuitive and interactive interface supported by a FastAPI backend, making it ideal for both educational and practical use in learning about cryptography.
+The project includes six classical cipher techniques: **Caesar, Monoalphabetic, Playfair, Transposition, Vigenère,** and **Rail Fence.**
 
 ---
 
-## 🔹 Live Demo
+## Features
 
-> *(If hosted locally, open `http://localhost:8000` after running the app)*
+### 1. Cryptographic Algorithms
 
----
+* **Caesar Cipher:** Shifts letters by a fixed number of positions.
+* **Monoalphabetic Cipher:** Substitutes letters using a custom 26-letter key.
+* **Playfair Cipher:** Encrypts letter pairs using a 5×5 matrix grid.
+* **Transposition Cipher:** Rearranges letters according to a numeric key.
+* **Vigenère Cipher:** Uses a keyword for polyalphabetic substitution.
+* **Rail Fence Cipher:** Writes text in a zigzag pattern across multiple rails.
 
-## 1. Overview
-
-CipherCraft is both a **learning tool** and a **practical encryption utility**.
-It allows users to experiment with different ciphers, observe how algorithms work, and save the encrypted or decrypted results.
-
-The project supports **six classical ciphers**:
-
-1. **Caesar Cipher** – Shifts letters by a fixed number of positions.
-2. **Monoalphabetic Cipher** – Substitutes letters using a 26-letter key.
-3. **Playfair Cipher** – Encrypts pairs of letters using a 5x5 matrix.
-4. **Transposition Cipher** – Rearranges letters based on a numeric key.
-5. **Vigenère Cipher** – Uses a keyword for polyalphabetic substitution.
-6. **Rail Fence Cipher** – Writes text in a zigzag pattern across rails.
-
----
-
-## 2. Features
-
-### 2.1 Cryptographic Algorithms
-
-* Six supported ciphers with different key parameters.
-* Step-by-step explanations available for each encryption or decryption process.
-* Downloadable results as `.txt` files.
-
-### 2.2 User Interface
+### 2. User Interface
 
 * Tabbed navigation for **Tool**, **Tutorial**, and **Guide** sections.
-* Responsive layout with **light and dark modes** (saved via localStorage).
-* Example panel for instant testing.
+* Responsive layout with **Light/Dark Mode** (saved in `localStorage`).
+* Ready-to-use example panel for quick testing.
+* Step-by-step explanation toggle for detailed encryption visualization.
+* **Save Result** feature to download results as `.txt` files.
 
-### 2.3 Interactivity
+### 3. Interactivity
 
-* Dynamic parameter inputs depending on the selected cipher.
-* Real-time validation for keys and text.
-* Smooth animations and hover effects.
+* Dynamic input fields that adjust based on the selected algorithm.
+* Real-time validation (e.g., ensuring unique 26-letter keys for Monoalphabetic).
+* Smooth animations and hover effects for an enhanced user experience.
 
-### 2.4 Accessibility
+### 4. Accessibility
 
-* Clear error messages for invalid input.
-* Fully mobile-friendly layout.
-
----
-
-## 3. System Requirements
-
-* **Browser:** Chrome, Firefox, Edge, or Safari (latest versions).
-* **Backend:** Python 3.8+
-* **Internet (Optional):** For Font Awesome and Google Fonts.
+* Clear error messages for incorrect or invalid input.
+* Mobile-friendly design with adaptive icons and layout scaling.
 
 ---
 
-## 4. Usage Guide
+## System Requirements
 
-### 4.1 Accessing the Dashboard
-
-1. Run the FastAPI backend.
-2. Open [http://localhost:8000](http://localhost:8000) in your browser.
-3. The **Tool** tab will appear by default.
-
-### 4.2 Encrypting / Decrypting Text
-
-1. Select **Operation:** Encrypt or Decrypt.
-2. Choose **Algorithm:** one of the six ciphers.
-3. Enter the **text** to process.
-4. Enter the **key or parameter** required (e.g., numeric shift or alphabet key).
-5. Optionally, check **Show step-by-step explanation**.
-6. Click **Submit** to process the text.
-7. Use **Save Result** to download the output as `ciphercraft_result.txt`.
-
-### 4.3 Exploring Examples
-
-* Choose a predefined example from the sidebar.
-* Click **Copy** to autofill the form fields.
-
-### 4.4 Switching Tabs
-
-* **Tool:** Encryption/Decryption interface.
-* **Tutorial:** Explains each algorithm.
-* **Guide:** Extra documentation and resources.
-
-### 4.5 Dark Mode
-
-* Click the moon/sun icon in the top-right corner.
-* Theme preference is stored in localStorage for persistence.
+* **Browser:** Chrome, Firefox, Safari, or Edge
+* **Backend:** Python 3.8 or higher
+* **Internet:** Optional (for Font Awesome and Google Fonts)
 
 ---
 
-## 5. Technical Details
+## Usage
 
-### 5.1 Frontend
+### 1. Run the Application
 
-* **HTML (index.html):** Structure with tabs, inputs, and examples panel.
-* **CSS (style.css):** Responsive design using Poppins font and animations.
-* **JavaScript (script.js):**
+Before using the website, start the backend server by running the following command in your terminal from the project root directory:
 
-  * Handles dynamic fields, validation, tab switching, Fetch API requests, and saving results.
+```bash
+python main.py
+```
 
-### 5.2 Backend
+This command starts the FastAPI server with **Uvicorn**.
+Once the server is running, open your browser and navigate to:
 
-* **Framework:** FastAPI
+```
+http://localhost:8000
+```
+
+You should now see the CipherCraft Website homepage with the **Tool** tab active.
+
+---
+
+### 2. Encrypting or Decrypting Text
+
+1. Select **Encrypt** or **Decrypt**.
+2. Choose one of the six cipher algorithms.
+3. Enter the text you want to process.
+4. Provide the corresponding key (e.g., shift = 3 for Caesar).
+5. (Optional) Enable **Show step-by-step explanation** for a detailed process.
+6. Click **Submit** to run encryption/decryption.
+7. Click **Save Result** to download the output.
+
+---
+
+### 3. Exploring Examples
+
+* Select a predefined example (e.g., Monoalphabetic Cipher).
+* Click **Copy** to auto-fill the fields.
+* Click **Submit** to view the result.
+
+---
+
+### 4. Switching Tabs
+
+* **Tool:** Main encryption/decryption workspace.
+* **Tutorial:** Detailed explanation of each cipher’s logic.
+* **Guide:** Step-by-step guide and helpful resources.
+
+---
+
+### 5. Dark Mode
+
+* Click the sun/moon icon in the top-right corner to toggle between themes.
+* Your selected mode is stored in `localStorage` for persistence.
+
+---
+
+## Technical Details
+
+### Frontend
+
+* **HTML:** `index.html` defines layout and navigation structure.
+* **CSS:** `style.css` manages responsive design, colors, and animations.
+* **JavaScript:** `script.js` handles input validation, tab switching, Fetch API requests, and saving output.
+
+### Backend
+
+* **Framework:** FastAPI (`main.py`)
 * **Endpoints:**
 
-  * `GET /` → Serves main page.
-  * `POST /process` → Performs encryption/decryption.
-* **Ciphers:** Implemented in Python with validation and error handling.
+  * `GET /` – Serves the main website.
+  * `POST /process` – Handles encryption/decryption logic.
+* **Ciphers:** Implemented in Python with input validation and exception handling.
 
-### 5.3 Dependencies
+### Dependencies
 
 * **Frontend:**
 
   * Font Awesome (icons)
   * Google Fonts (Poppins)
-* **Python:**
+* **Backend:**
 
   * `fastapi` – Web framework
   * `uvicorn` – ASGI server
@@ -131,27 +134,26 @@ The project supports **six classical ciphers**:
 
 ---
 
-## 6. Example Usage
+## Example Usage
 
-**Scenario:** Encrypt text using the Monoalphabetic Cipher.
+**Scenario:** Encrypt text using Monoalphabetic Cipher
 
-| Step | Action                                                             |
-| ---- | ------------------------------------------------------------------ |
-| 1    | Select *Encrypt* and *Monoalphabetic Cipher*                       |
-| 2    | Enter text: `if we wish to buy a car`                              |
-| 3    | Enter key: `DKVQFIBJWPESCXHTMYAUOLRGNZ`                            |
-| 4    | Click *Submit*                                                     |
-| 5    | Output: `WIGFGWJOHKLZDVDA`                                         |
-| 6    | Optionally enable *Show step-by-step explanation* or *Save Result* |
+* **Inputs:**
+
+  * Operation: Encrypt
+  * Algorithm: Monoalphabetic Cipher
+  * Text: `if we wish to buy a car`
+  * Key: `DKVQFIBJWPESCXHTMYAUOLRGNZ`
+
+* **Output:** `WIGFGWJOHKLZDVDA`
 
 ---
 
-## 7. Resources
+## Resources
 
-* **Cryptography Basics:**
+* [Wikipedia: Cryptography](https://en.wikipedia.org/wiki/Cryptography)
+* [Khan Academy: Cryptography](https://www.khanacademy.org/computing/computer-science/cryptography)
+* [FastAPI Documentation](https://fastapi.tiangolo.com)
+* [Font Awesome](https://fontawesome.com)
+* [Google Fonts](https://fonts.google.com)
 
-  * [Wikipedia: Cryptography](https://en.wikipedia.org/wiki/Cryptography)
-  * [Khan Academy: Cryptography](https://www.khanacademy.org/computing/computer-science/cryptography)
-* **FastAPI Documentation:** [fastapi.tiangolo.com](https://fastapi.tiangolo.com)
-* **Font Awesome:** [fontawesome.com](https://fontawesome.com)
-* **Google Fonts:** [fonts.google.com](https://fonts.google.com)
