@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CipherCraft Documentation</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Use Poppins font */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #e0e7ec);
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* Background shield effect */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Shield_icon.svg/512px-Shield_icon.svg.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.05;
+      transform: translate(-50%, -50%);
+      animation: pulse 5s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.02; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.04; transform: translate(-50%, -50%) scale(1.1); }
+      100% { opacity: 0.02; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    /* Container */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 15px auto;
+      background: #e9ebee;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      animation: fadeIn 1s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5px;
+      background: #e0e2e6;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Logo with hover rotation */
+    .logo {
+      max-width: 260px;
+      margin: 3px 0;
+      transition: transform 0.5s ease;
+    }
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+
+    /* Header Icons */
+    .header-icons {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #333;
+      transition: transform 0.3s ease;
+    }
+    .icon-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Documentation Content */
+    .doc-content {
+      padding: 20px;
+    }
+    .doc-content h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.2em;
+      color: #3c66c4;
+    }
+    .doc-content h2 {
+      margin-top: 25px;
+      margin-bottom: 12px;
+      font-size: 1.6em;
+      color: #333;
+      border-bottom: 2px solid #5a8dee;
+      padding-bottom: 5px;
+    }
+    .doc-content h3 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+      color: #333;
+    }
+    .doc-content p {
+      margin-bottom: 15px;
+      line-height: 1.7;
+      font-size: 1em;
+    }
+    .doc-content ul, .doc-content ol {
+      margin-bottom: 15px;
+      padding-left: 25px;
+    }
+    .doc-content ul li, .doc-content ol li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .doc-content a {
+      color: #5a8dee;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .doc-content a:hover {
+      color: #ff7f00;
+      text-decoration: underline;
+    }
+    .doc-content code {
+      background: #f1f1f1;
+      padding: 3px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 0.95em;
+    }
+
+    /* Card Design */
+    .card {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Footer */
+    footer {
+      background: #e0e2e6;
+      padding: 15px;
+      text-align: center;
+      border-top: 1px solid #ccc;
+      font-size: 0.9em;
+    }
+    footer a {
+      color: #5a8dee;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #ff7f00;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 800px) {
+      .container {
+        width: 95%;
+      }
+      .logo {
+        max-width: 200px;
+      }
+      .doc-content h1 {
+        font-size: 1.8em;
+      }
+      .doc-content h2 {
+        font-size: 1.4em;
+      }
+      .doc-content h3 {
+        font-size: 1.1em;
+      }
+      .header-icons {
+        top: 3px;
+        right: 8px;
+      }
+    }
+
+    /* RTL Support */
+    html[dir="rtl"] .doc-content {
+      text-align: right;
+    }
+    html[dir="rtl"] .doc-content ul,
+    html[dir="rtl"] .doc-content ol {
+      padding-right: 25px;
+      padding-left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="/static/img3.png" alt="CipherCraft Logo" class="logo" />
+      <div class="header-icons">
+        <a href="/" class="icon-btn" title="Back to Dashboard">
+          <i class="fas fa-home"></i>
+        </a>
+      </div>
+    </header>
+    
+    <section class="doc-content">
+      <div class="card">
+        <h1 class="card-title">CipherCraft Dashboard Documentation</h1>
+        
+        <h2>1. Overview</h2>
+        <p>CipherCraft Dashboard is a web-based application designed to perform encryption and decryption using various classical cryptographic algorithms. Built with a user-friendly interface and robust backend, it serves as an educational tool for learning about cryptography and a practical utility for applying ciphers. The project supports six ciphers: Caesar, Monoalphabetic, Playfair, Transposition, Vigenère, and Rail Fence.</p>
+        <ul>
+          <li><strong>Author:</strong> Mohamed Ali (<a href="https://www.linkedin.com/in/mohamed-ali-ragab-73a51024b" target="_blank">LinkedIn</a>)</li>
+          <li><strong>Version:</strong> 1.0.0</li>
+          <li><strong>Date:</strong> April 19, 2025</li>
+          <li><strong>License:</strong> © 2025 All rights reserved</li>
+        </ul>
+        
+        <h2>2. Features</h2>
+        <h3>2.1. Cryptographic Algorithms</h3>
+        <ol>
+          <li><strong>Caesar Cipher:</strong> Shifts letters by a fixed number of positions.</li>
+          <li><strong>Monoalphabetic Cipher:</strong> Substitutes letters using a 26-letter key.</li>
+          <li><strong>Playfair Cipher:</strong> Encrypts letter pairs using a 5x5 grid.</li>
+          <li><strong>Transposition Cipher:</strong> Rearranges letters based on a numeric key.</li>
+          <li><strong>Vigenère Cipher:</strong> Uses a keyword for polyalphabetic substitution.</li>
+          <li><strong>Rail Fence Cipher:</strong> Writes text in a zigzag pattern across rails.</li>
+        </ol>
+        
+        <h3>2.2. User Interface</h3>
+        <ul>
+          <li>Tabbed navigation for Tool, Tutorial, and Guide sections.</li>
+          <li>Responsive design with light and dark modes (persistent via localStorage).</li>
+          <li>Examples panel with pre-filled inputs for quick testing.</li>
+          <li>Step-by-step explanation option for algorithm processes.</li>
+          <li>Save result feature to download outputs as text files.</li>
+        </ul>
+        
+        <h3>2.3. Interactivity</h3>
+        <ul>
+          <li>Dynamic parameter input based on selected algorithm (e.g., shift for Caesar, 26-letter key for Monoalphabetic).</li>
+          <li>Client-side validation for inputs (e.g., ensuring Monoalphabetic key has 26 unique letters).</li>
+          <li>Hover effects (e.g., logo rotation) and animations for enhanced UX.</li>
+        </ul>
+        
+        <h3>2.4. Accessibility</h3>
+        <ul>
+          <li>RTL support for languages like Arabic.</li>
+          <li>Clear error messages for invalid inputs.</li>
+          <li>Mobile-friendly layout with adjusted logo and icon sizes.</li>
+        </ul>
+        
+        <h2>3. System Requirements</h2>
+        <ul>
+          <li><strong>Browser:</strong> Modern browsers (Chrome, Firefox, Safari, Edge).</li>
+          <li><strong>Backend:</strong> Python 3.8+ with required packages.</li>
+          <li><strong>Internet:</strong> Optional for external resources (e.g., Font Awesome, Google Fonts).</li>
+        </ul>
+        
+        <h2>4. Usage</h2>
+        <h3>4.1. Accessing the Dashboard</h3>
+        <ul>
+          <li>Open <code>http://localhost:8000</code> after running the application.</li>
+          <li>The dashboard loads with the <strong>Tool</strong> tab active.</li>
+        </ul>
+        
+        <h3>4.2. Encrypting/Decrypting Text</h3>
+        <ol>
+          <li><strong>Select Operation:</strong> Choose <strong>Encrypt</strong> or <strong>Decrypt</strong> from the dropdown.</li>
+          <li><strong>Select Algorithm:</strong> Pick one of the six ciphers.</li>
+          <li><strong>Enter Text:</strong> Input the text to process in the textarea.</li>
+          <li><strong>Enter Parameter:</strong> Provide the required key (e.g., <code>3</code> for Caesar, <code>DKVQFIBJWPESCXHTMYAUOLRGNZ</code> for Monoalphabetic).</li>
+          <li><strong>Optional:</strong> Check <strong>Show step-by-step explanation</strong> for a detailed breakdown.</li>
+          <li><strong>Submit:</strong> Click the <strong>Submit</strong> button to process the text.</li>
+          <li><strong>Save Result:</strong> Click <strong>Save Result</strong> to download the output as <code>ciphercraft_result.txt</code>.</li>
+        </ol>
+        
+        <h3>4.3. Exploring Examples</h3>
+        <ul>
+          <li>Click the <strong>Examples</strong> icon (list icon) in the top-right header.</li>
+          <li>Select an example (e.g., Monoalphabetic Cipher with text <code>if we wish to buy a car</code>).</li>
+          <li>Click <strong>Copy</strong> to auto-fill the form with the example's text and key.</li>
+        </ul>
+        
+        <h3>4.4. Switching Tabs</h3>
+        <ul>
+          <li><strong>Tool:</strong> Main interface for encryption/decryption.</li>
+          <li><strong>Tutorial:</strong> Explains how each algorithm works.</li>
+          <li><strong>Guide:</strong> Provides step-by-step usage instructions and external resources.</li>
+        </ul>
+        
+        <h3>4.5. Toggling Dark Mode</h3>
+        <ul>
+          <li>Click the <strong>Dark Mode</strong> icon (moon/sun) in the top-right header.</li>
+          <li>The mode persists across sessions via localStorage.</li>
+        </ul>
+        
+        <h2>5. Technical Details</h2>
+        <h3>5.1. Frontend</h3>
+        <ul>
+          <li><strong>HTML:</strong> <code>index.html</code> defines the structure with tabs, forms, and an examples panel.</li>
+          <li><strong>CSS:</strong> <code>style.css</code> uses Poppins font, responsive design, and animations (e.g., logo rotation, fade-in effects).</li>
+          <li><strong>JavaScript:</strong> <code>script.js</code> handles:
+            <ul>
+              <li>Dynamic parameter fields based on algorithm.</li>
+              <li>Client-side validation (e.g., Monoalphabetic key must be 26 unique letters).</li>
+              <li>Tab navigation, form submission via Fetch API, and result saving.</li>
+              <li>Examples panel toggle and copy functionality.</li>
+            </ul>
+          </li>
+        </ul>
+        
+        <h3>5.2. Backend</h3>
+        <ul>
+          <li><strong>Framework:</strong> FastAPI (<code>main.py</code>) for serving the app and processing requests.</li>
+          <li><strong>Endpoints:</strong>
+            <ul>
+              <li><code>GET /</code>: Serves <code>index.html</code>.</li>
+              <li><code>GET /documentation</code>: Placeholder for documentation page.</li>
+              <li><code>POST /process</code>: Handles encryption/decryption with parameters (<code>operation</code>, <code>algorithm</code>, <code>text</code>, <code>param</code>).</li>
+            </ul>
+          </li>
+          <li><strong>Ciphers:</strong> Implemented in Python with input validation and error handling.
+            <ul>
+              <li>Example: Monoalphabetic Cipher maps each letter using a 26-letter key and preserves case in output.</li>
+            </ul>
+          </li>
+        </ul>
+        
+        <h3>5.3. Dependencies</h3>
+        <ul>
+          <li><strong>External:</strong>
+            <ul>
+              <li>Font Awesome 6.0.0 for icons.</li>
+              <li>Google Fonts (Poppins) for typography.</li>
+            </ul>
+          </li>
+          <li><strong>Python:</strong>
+            <ul>
+              <li><code>fastapi</code>: Web framework.</li>
+              <li><code>uvicorn</code>: ASGI server.</li>
+              <li><code>jinja2</code>: Template rendering.</li>
+            </ul>
+          </li>
+        </ul>
+        
+        <h2>6. Example Usage</h2>
+        <p><strong>Scenario:</strong> Encrypt text using the Monoalphabetic Cipher.</p>
+        <ol>
+          <li><strong>Inputs:</strong>
+            <ul>
+              <li>Operation: Encrypt</li>
+              <li>Algorithm: Monoalphabetic Cipher</li>
+              <li>Text: <code>if we wish to buy a car</code></li>
+              <li>Key: <code>DKVQFIBJWPESCXHTMYAUOLRGNZ</code></li>
+            </ul>
+          </li>
+          <li><strong>Steps:</strong>
+            <ul>
+              <li>Select <strong>Encrypt</strong> and <strong>Monoalphabetic Cipher</strong>.</li>
+              <li>Enter the text and key.</li>
+              <li>Click <strong>Submit</strong>.</li>
+            </ul>
+          </li>
+          <li><strong>Output:</strong> <code>WIGFGWJOHKLZDVDA</code></li>
+          <li><strong>Optional:</strong> Enable <strong>Show step-by-step explanation</strong> to see the process or click <strong>Save Result</strong> to download the output.</li>
+        </ol>
+        
+        <h2>7. Troubleshooting</h2>
+        <ul>
+          <li><strong>Error: "Key must be exactly 26 letters":</strong>
+            <ul>
+              <li>Ensure the Monoalphabetic key has exactly 26 unique letters (e.g., <code>DKVQFIBJWPESCXHTMYAUOLRGNZ</code>).</li>
+              <li>Check for typos or missing letters (e.g., original example key omitted <code>Z</code>).</li>
+            </ul>
+          </li>
+          <li><strong>Server Not Starting:</strong>
+            <ul>
+              <li>Verify Python and dependencies are installed.</li>
+              <li>Ensure port <code>8000</code> is free.</li>
+            </ul>
+          </li>
+          <li><strong>UI Issues:</strong>
+            <ul>
+              <li>Clear browser cache if styles/scripts don't update.</li>
+              <li>Confirm <code>static/style.css</code> and <code>static/script.js</code> are in the correct directory.</li>
+            </ul>
+          </li>
+        </ul>
+        
+        <h2>8. Resources</h2>
+        <ul>
+          <li><strong>Cryptography Basics:</strong>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Cryptography" target="_blank">Wikipedia: Cryptography</a></li>
+              <li><a href="https://www.khanacademy.org/computing/computer-science/cryptography" target="_blank">Khan Academy: Cryptography</a></li>
+            </ul>
+          </li>
+          <li><a href="https://fastapi.tiangolo.com" target="_blank">FastAPI Documentation</a></li>
+          <li><a href="https://fontawesome.com" target="_blank">Font Awesome</a></li>
+          <li><a href="https://fonts.google.com" target="_blank">Google Fonts</a></li>
+        </ul>
+        
+        <h2>9. Contact</h2>
+        <p>For questions, feedback, or contributions, contact Mohamed Ali via <a href="https://www.linkedin.com/in/mohamed-ali-ragab-73a51024b" target="_blank">LinkedIn</a>.</p>
+      </div>
+    </section>
+    
+    <footer>
+      <p>© 2025 All rights reserved – <a href="https://www.linkedin.com/in/mohamed-ali-ragab-73a51024b" target="_blank">M.ALi</a></p>
+    </footer>
+  </div>
+</body>
+</html>

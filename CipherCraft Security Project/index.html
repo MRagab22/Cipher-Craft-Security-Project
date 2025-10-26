@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CipherCraft Dashboard</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Your existing CSS -->
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="/static/img3.png" alt="CipherCraft Logo" class="logo" />
+      <div class="header-icons">
+        <button id="examplesToggle" class="icon-btn" title="Show Examples">
+          <i class="fas fa-list"></i>
+        </button>
+        <a href="/documentation" class="icon-btn" title="Documentation">
+          <i class="fas fa-book"></i>
+        </a>
+        <button id="darkModeToggle" class="icon-btn" title="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="toolTab">Tool</button>
+        <button class="tab-btn" data-tab="tutorialTab">Tutorial</button>
+        <button class="tab-btn" data-tab="guideTab">Guide</button>
+      </nav>
+    </header>
+    
+    <!-- Examples Sidebar -->
+    <div id="examplesPanel" class="examples-panel">
+      <div class="examples-content">
+        <h2>Examples</h2>
+        <button id="closeExamples" class="close">×</button>
+        <div class="example-item">
+          <h3>Caesar Cipher</h3>
+          <p><strong>Text:</strong> meet me after the toga party</p>
+          <button class="copy-example-btn" data-algo="caesar" data-text="meet me after the toga party" data-param="">Copy</button>
+        </div>
+        <div class="example-item">
+          <h3>Monoalphabetic Cipher</h3>
+          <p><strong>Text:</strong> if we wish to buy a car</p>
+          <p><strong>Key:</strong> DKVQFIBJWPESCXHTMYAUOLRGNZ</p>
+          <button class="copy-example-btn" data-algo="monoalphabetic" data-text="if we wish to buy a car" data-param="DKVQFIBJWPESCXHTMYAUOLRGNZ">Copy</button>
+        </div>
+        <div class="example-item">
+          <h3>Playfair Cipher</h3>
+          <p><strong>Text:</strong> we have to support our army</p>
+          <p><strong>Key:</strong> Brave</p>
+          <button class="copy-example-btn" data-algo="playfair" data-text="we have to support our army" data-param="Brave">Copy</button>
+        </div>
+        <div class="example-item">
+          <h3>Transposition Cipher</h3>
+          <p><strong>Text:</strong> We have to support our Army against terror Attack</p>
+          <p><strong>Key:</strong> 5 4 2 3 1 7 6</p>
+          <button class="copy-example-btn" data-algo="transposition" data-text="We have to support our Army against terror Attack" data-param="5 4 2 3 1 7 6">Copy</button>
+        </div>
+        <div class="example-item">
+          <h3>Vigenère Cipher</h3>
+          <p><strong>Text:</strong> We have to support our Army against terror Attack</p>
+          <p><strong>Key:</strong> Brave</p>
+          <button class="copy-example-btn" data-algo="vigenere" data-text="We have to support our Army against terror Attack" data-param="Brave">Copy</button>
+        </div>
+        <div class="example-item">
+          <h3>Rail Fence Cipher</h3>
+          <p><strong>Text:</strong> meet me after the toga party</p>
+          <button class="copy-example-btn" data-algo="railfence" data-text="meet me after the toga party" data-param="">Copy</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tool Tab -->
+    <section class="tab-content active" id="toolTab">
+      <div class="card">
+        <h2 class="card-title">Cipher Craft</h2>
+        <form id="cryptoForm" method="post" action="/process">
+          <div class="form-group">
+            <label for="operation">Select Operation:</label>
+            <select id="operation" name="operation">
+              <option value="encrypt">Encrypt</option>
+              <option value="decrypt">Decrypt</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="algorithm">Select Algorithm:</label>
+            <select id="algorithm" name="algorithm">
+              <option value="caesar">Caesar Cipher</option>
+              <option value="monoalphabetic">Monoalphabetic Cipher</option>
+              <option value="playfair">Playfair Cipher</option>
+              <option value="transposition">Transposition Cipher</option>
+              <option value="vigenere">Vigenère Cipher</option>
+              <option value="railfence">Rail Fence Cipher</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="text">Enter Text:</label>
+            <textarea id="text" name="text" required placeholder="Type your text here..."></textarea>
+          </div>
+          <div class="form-group" id="param-container">
+            <label for="param" id="param-label">Enter Shift (for Caesar):</label>
+            <input type="text" id="param" name="param" required placeholder="e.g., 3" />
+            <p id="param-error" class="error-message" style="display: none; color: red; font-size: 0.9em;"></p>
+          </div>
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="showSteps" name="showSteps" />
+            <label for="showSteps">Show step-by-step explanation</label>
+          </div>
+          <div class="btn-group">
+            <button type="submit" class="btn primary-btn">Submit</button>
+            <button type="button" id="saveResult" class="btn secondary-btn">
+              <i class="fas fa-save"></i> Save Result
+            </button>
+          </div>
+        </form>
+        <div id="result-container" class="result-card">
+          <h3>Result:</h3>
+          <div id="result" class="result-box"></div>
+        </div>
+        <div id="stepsContainer" class="steps-container" style="display: none;">
+          <h3>Step-by-Step Explanation</h3>
+          <ul id="stepsList"></ul>
+          <button id="hideSteps" class="btn secondary-btn">Hide Explanation</button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Tutorial Tab -->
+    <section class="tab-content" id="tutorialTab">
+      <div class="card">
+        <h2 class="card-title">Tutorial: How the Algorithms Work</h2>
+        <ul class="tutorial-list">
+          <li>
+            <strong>Caesar Cipher:</strong> Shifts each letter in the text by a fixed number of positions in the alphabet.<br>
+            For example, a shift of 3 turns 'A' into 'D' and 'B' into 'E'.
+          </li>
+          <li>
+            <strong>Monoalphabetic Cipher:</strong> Replaces each letter with another based on a fixed 26-letter key.<br>
+            The key must contain all 26 letters in a unique order.
+          </li>
+          <li>
+            <strong>Playfair Cipher:</strong> Encrypts pairs of letters using a 5x5 grid created from a keyword.<br>
+            Letters are substituted based on their positions in the grid.
+          </li>
+          <li>
+            <strong>Transposition Cipher:</strong> Rearranges letters by writing them in rows and reading by column order.<br>
+            A numeric key (e.g., 5 4 2 3 1) specifies the column sequence.
+          </li>
+          <li>
+            <strong>Vigenère Cipher:</strong> Shifts letters using a repeating keyword, varying the shift for each letter.<br>
+            Each letter of the key determines a different Caesar shift.
+          </li>
+          <li>
+            <strong>Rail Fence Cipher:</strong> Writes text in a zigzag pattern across rows and reads it row by row.<br>
+            The number of rows (rails) defines the zigzag's depth.
+          </li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Guide Tab -->
+    <section class="tab-content" id="guideTab">
+      <div class="card">
+        <h2 class="card-title">User Guide & Documentation</h2>
+        <ol>
+          <li>Select Encrypt or Decrypt.</li>
+          <li>Choose your algorithm.</li>
+          <li>Enter your text and the required parameter (e.g., 26 unique letters for Monoalphabetic).</li>
+          <li>Hit <strong>Submit</strong>.</li>
+          <li>Enable “Show step-by-step explanation” if desired.</li>
+          <li>Click “Save Result” to download output.</li>
+        </ol>
+        <p>Learn more on:</p>
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/Cryptography" target="_blank">Wikipedia: Cryptography</a></li>
+          <li><a href="https://www.khanacademy.org/computing/computer-science/cryptography" target="_blank">Khan Academy: Cryptography</a></li>
+        </ul>
+      </div>
+    </section>
+    
+    <footer>
+      <p>© 2025 All rights reserved – <a href="https://www.linkedin.com/in/mohamed-ali-ragab-73a51024b" target="_blank">M.ALi</a></p>
+    </footer>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Use Poppins font */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #e0e7ec);
+  color: #333;
+  min-height: 100vh;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+body.dark {
+  background: linear-gradient(135deg, #2a2e34, #353a43);
+  color: #e0e7ec;
+}
+
+/* Background shield effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Shield_icon.svg/512px-Shield_icon.svg.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0.05;
+  transform: translate(-50%, -50%);
+  animation: pulse 5s infinite;
+  pointer-events: none;
+}
+
+body.dark::before {
+  opacity: 0.02;
+  filter: brightness(2);
+}
+
+@keyframes pulse {
+  0% { opacity: 0.02; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.04; transform: translate(-50%, -50%) scale(1.1); }
+  100% { opacity: 0.02; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 15px auto;
+  background: #e9ebee;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  animation: fadeIn 1s ease;
+  position: relative;
+  z-index: 1;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+body.dark .container {
+  background: #354555;
+}
+
+/* Header */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  background: #e0e2e6;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  transition: background 0.5s ease;
+}
+
+body.dark header {
+  background: #3a4048;
+  border-bottom: 1px solid #555;
+}
+
+/* Logo with hover rotation */
+.logo {
+  max-width: 260px; /* Increased from 220px */
+  margin: 3px 0;
+  transition: transform 0.5s ease;
+}
+.logo:hover {
+  transform: rotate(360deg);
+}
+
+/* Header Icons */
+.header-icons {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.icon-btn:hover {
+  transform: scale(1.1);
+}
+body.dark .icon-btn {
+  color: #e0e7ec;
+}
+
+/* Navigation Tabs */
+.tabs {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.tab-btn {
+  background: #5a8dee;
+  border: none;
+  padding: 6px 16px;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.tab-btn:hover {
+  background: #4a7bd8;
+  transform: scale(1.05);
+}
+.tab-btn.active {
+  background: #3c66c4;
+}
+
+/* Content Panels (Tabs) */
+.tab-content {
+  display: none;
+  padding: 20px;
+  animation: fadeIn 0.8s ease;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* Card Design */
+.card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: background 0.3s ease;
+}
+body.dark .card {
+  background: #455565;
+}
+.card-title {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.8em;
+  color: #3c66c4;
+}
+body.dark #toolTab .card-title {
+  color: #ff7f00; /* Orange for "Cipher Craft" in dark mode */
+}
+
+/* Form Styling */
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #222;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
+}
+body.dark label {
+  color: #e0e7ec;
+}
+textarea, input[type="text"], input[type="number"], select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+  background: #fff;
+  color: #333;
+  font-size: 1em;
+}
+#text {
+  font-size: 1.2em;
+}
+body.dark textarea, body.dark input[type="text"], body.dark input[type="number"], body.dark select {
+  background: #455565;
+  border-color: #777;
+  color: #e0e7ec;
+}
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #ff7f00;
+  box-shadow: 0 0 5px rgba(255, 127, 0, 0.5);
+}
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Error Message */
+.error-message {
+  margin-top: 5px;
+  color: #e63946;
+}
+
+/* Button Styling */
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+.btn-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.primary-btn {
+  background: #ff7f00;
+  color: #fff;
+}
+.primary-btn:hover {
+  background: #e67300;
+}
+.secondary-btn {
+  background: #5a8dee;
+  color: #fff;
+}
+.secondary-btn:hover {
+  background: #4a7bd8;
+}
+
+/* Output Area */
+#output-area {
+  padding: 20px;
+}
+#output-area h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.result-box {
+  background: #f1f1f1;
+  padding: 15px;
+  border-radius: 4px;
+  min-height: 100px;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
+body.dark .result-box {
+  background: #404a55;
+  color: #e0e7ec;
+}
+.result-box:hover {
+  box-shadow: 0 0 10px 2px rgba(255,127,0,0.7);
+}
+
+/* Steps Container */
+.steps-container {
+  margin-top: 15px;
+  background: #dfefff;
+  padding: 15px;
+  border-radius: 4px;
+  animation: fadeIn 0.5s ease;
+}
+body.dark .steps-container {
+  background: #354555;
+}
+
+/* Tutorial List */
+.tutorial-list {
+  list-style: none;
+  padding: 0;
+}
+.tutorial-list li {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+body.dark .tutorial-list li {
+  border-bottom: 1px solid #666;
+}
+
+/* Footer */
+footer {
+  background: #e0e0e0;
+  padding: 15px;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  font-size: 0.9em;
+  transition: background 0.5s ease;
+}
+body.dark footer {
+  background: #2a3543;
+  border-top: 1px solid #555;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  animation: fadeIn 0.5s ease;
+}
+.modal-content {
+  background: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  animation: slideIn 0.5s ease;
+}
+body.dark .modal-content {
+  background: #354555;
+  color: #e0e7ec;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  font-weight: 600;
+  cursor: pointer;
+  color: #333;
+}
+body.dark .close {
+  color: #e0e7ec;
+}
+
+/* Examples Panel */
+.examples-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: #f8f9fa;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+.examples-panel.open {
+  right: 0;
+}
+body.dark .examples-panel {
+  background: #455565;
+}
+.examples-content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+.examples-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: #3c66c4;
+}
+.example-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+body.dark .example-item {
+  background: #354555;
+}
+.example-item h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+.example-item p {
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+.copy-example-btn {
+  background: #5a8dee;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.copy-example-btn:hover {
+  background: #4a7bd8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 800px) {
+  .tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .tab-btn {
+    flex: 1 1 30%;
+  }
+  .examples-panel {
+    width: 100%;
+    right: -100%;
+  }
+  .logo {
+    max-width: 200px; /* Increased from 170px */
+  }
+  .header-icons {
+    top: 3px;
+    right: 8px;
+  }
+}
+
+/* Optional RTL Support */
+html[dir="rtl"] label,
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+  text-align: right;
+}
